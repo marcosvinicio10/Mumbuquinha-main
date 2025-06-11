@@ -23,7 +23,7 @@ public class MovAuto : MonoBehaviour
 
     void Update()
     {
-        // Verifica se está no chão com Raycast testeee
+        // Verifica se está no chão com Raycast 
         isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundMask);
 
         if (isGrounded && velocity.y < 0)
