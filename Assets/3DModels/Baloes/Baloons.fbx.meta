@@ -1,24 +1,9 @@
 fileFormatVersion: 2
-guid: e390f28a1fee5034a884257bcf3bc07e
+guid: bc99eea1f330bfe418f7a4eb8c669002
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MaterialVermelhinho
-    second: {fileID: 2100000, guid: bb531dfe34f06824d82f72d4cbd1c827, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: VermelhinhoRoughness
-    second: {fileID: 2800000, guid: 1b63412ce2f9d06429ae3f25e8acb70d, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: VermelhinhoTxt
-    second: {fileID: 2800000, guid: 42c35690e078fad4193eba5bd689ca08, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -24,10 +24,21 @@ public class MarioLikeMovement : MonoBehaviour
     private Vector3 currentMoveDirection;
 
     private float lastGroundedTime;
-    private float lastJumpPressedTime;
+    private float lastJumpPressedTime = -100f;
+
+
+    [Header("Anim")]
+    public bool IsWalking {  get; private set; }
+    
+    public bool IsJumping { get; private set; }
+
+
 
     void Start()
     {
+
+       
+
         controller = GetComponent<CharacterController>();
 
         if (cameraTransform == null && Camera.main != null)
@@ -101,6 +112,13 @@ public class MarioLikeMovement : MonoBehaviour
 
         // Aplica movimentação
         controller.Move((move + new Vector3(0, velocity.y, 0)) * Time.deltaTime);
+
+
+        IsWalking = new Vector3(move.x, 0f, move.z).magnitude > 0.1f;
+        IsJumping = velocity.y > 0f;
+     
+
+
     }
 
     public void Bounce()
