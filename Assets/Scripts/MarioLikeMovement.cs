@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 public class MarioLikeMovement : MonoBehaviour
@@ -29,8 +30,8 @@ public class MarioLikeMovement : MonoBehaviour
 
     [Header("Anim")]
     public bool IsWalking {  get; private set; }
-    
-    public bool IsJumping { get; private set; }
+
+    public Animator animtr;
 
 
 
@@ -53,7 +54,17 @@ public class MarioLikeMovement : MonoBehaviour
 
     void Update()
     {
-        bool isGrounded = controller.isGrounded;
+        if (Input.GetButtonDown("Jump"))
+        {
+            animtr.SetTrigger("IsJumping");
+
+        }
+        
+
+
+
+
+            bool isGrounded = controller.isGrounded;
         if (isGrounded)
         {
             lastGroundedTime = Time.time;
@@ -62,8 +73,10 @@ public class MarioLikeMovement : MonoBehaviour
         }
 
         // Pulo (jump buffer)
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump")) 
             lastJumpPressedTime = Time.time;
+            
+
 
         // Direção baseada na câmera
         float h = Input.GetAxisRaw("Horizontal");
@@ -108,6 +121,7 @@ public class MarioLikeMovement : MonoBehaviour
         else
         {
             velocity.y += gravity * Time.deltaTime; // gravidade normal
+          
         }
 
         // Aplica movimentação
@@ -115,7 +129,7 @@ public class MarioLikeMovement : MonoBehaviour
 
 
         IsWalking = new Vector3(move.x, 0f, move.z).magnitude > 0.1f;
-        IsJumping = velocity.y > 0f;
+       
      
 
 
