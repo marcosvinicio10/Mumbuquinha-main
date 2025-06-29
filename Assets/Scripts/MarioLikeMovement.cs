@@ -13,8 +13,8 @@ public class MarioLikeMovement : MonoBehaviour
     public float acceleration = 20f;
     public float deceleration = 10f;
     public float airControl = 0.5f;
-  
 
+    public Joystick joystick;
 
     [Header("Pulo")]
     public float jumpForce = 10f;
@@ -30,7 +30,7 @@ public class MarioLikeMovement : MonoBehaviour
     private float lastJumpPressedTime = -100f;
 
     [Header("Anim")]
-    public bool IsWalking {  get; private set; }
+    public bool IsWalking { get; private set; }
     public Animator animtr;
 
 
@@ -40,10 +40,9 @@ public class MarioLikeMovement : MonoBehaviour
 
     void Start()
     {
-       
+
         controller = GetComponent<CharacterController>();
     }
-
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
@@ -54,15 +53,12 @@ public class MarioLikeMovement : MonoBehaviour
         }
     }
 
-
-
-
-
     void Update()
     {
-       
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+
+        float h = joystick.Horizontal();
+        float v = joystick.Vertical();
+
         Vector3 inputDir = new Vector3(h, 0f, v).normalized;
         Vector3 camForward = cameraTransform.forward;
         Vector3 camRight = cameraTransform.right;
@@ -73,7 +69,7 @@ public class MarioLikeMovement : MonoBehaviour
         Vector3 targetDir = camForward * inputDir.z + camRight * inputDir.x;
         bool isGrounded = controller.isGrounded;
 
-        
+
         if (isGrounded)
         {
             lastGroundedTime = Time.time;
@@ -82,13 +78,11 @@ public class MarioLikeMovement : MonoBehaviour
         }
 
         // Pulo (jump buffer)
-        if (Input.GetButtonDown("Jump")) 
+        if (Input.GetButtonDown("Jump"))
             lastJumpPressedTime = Time.time;
-            
-
 
         // Direção baseada na câmera
-    
+
         float controlFactor = isGrounded ? 1f : airControl;
         if (targetDir.magnitude > 0.1f)
         {
@@ -119,7 +113,7 @@ public class MarioLikeMovement : MonoBehaviour
         else
         {
             velocity.y += gravity * Time.deltaTime; // gravidade normal
-          
+
         }
 
         // Aplica movimentação
@@ -150,28 +144,7 @@ public class MarioLikeMovement : MonoBehaviour
 
         }
 
-
-
-
-        // Colisões
-   
-
-
-
-
-
-
-
-
-
-
-
-
-}
-
-
-
-
+    }
 
 
     public void Bounce()
