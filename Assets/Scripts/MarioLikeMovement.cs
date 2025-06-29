@@ -8,11 +8,13 @@ public class MarioLikeMovement : MonoBehaviour
     public Transform cameraTransform;
 
     [Header("Movimentação")]
-    public float moveSpeed = 6f;
+    public float moveSpeed = 10f;
     public float rotationSpeed = 10f;
     public float acceleration = 20f;
     public float deceleration = 10f;
     public float airControl = 0.5f;
+  
+
 
     [Header("Pulo")]
     public float jumpForce = 10f;
@@ -27,44 +29,51 @@ public class MarioLikeMovement : MonoBehaviour
     private float lastGroundedTime;
     private float lastJumpPressedTime = -100f;
 
-
     [Header("Anim")]
     public bool IsWalking {  get; private set; }
-
     public Animator animtr;
 
+
+    [Header("Interações")]
+    public float trampolimForce = 32f;
 
 
     void Start()
     {
-
        
-
         controller = GetComponent<CharacterController>();
-
-        if (cameraTransform == null && Camera.main != null)
-        {
-            cameraTransform = Camera.main.transform;
-        }
-
-        // Trava o cursor no centro da tela
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
+
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.CompareTag("Trampolim"))
+        {
+            animtr.SetTrigger("IsJumping");
+            velocity.y = trampolimForce;
+        }
+    }
+
+
+
+
 
     void Update()
     {
-        if (Input.GetButtonDown("Jump"))
-        {
-            animtr.SetTrigger("IsJumping");
+       
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
+        Vector3 inputDir = new Vector3(h, 0f, v).normalized;
+        Vector3 camForward = cameraTransform.forward;
+        Vector3 camRight = cameraTransform.right;
+        camForward.y = 0f;
+        camRight.y = 0f;
+        camForward.Normalize();
+        camRight.Normalize();
+        Vector3 targetDir = camForward * inputDir.z + camRight * inputDir.x;
+        bool isGrounded = controller.isGrounded;
 
-        }
         
-
-
-
-
-            bool isGrounded = controller.isGrounded;
         if (isGrounded)
         {
             lastGroundedTime = Time.time;
@@ -79,18 +88,7 @@ public class MarioLikeMovement : MonoBehaviour
 
 
         // Direção baseada na câmera
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
-        Vector3 inputDir = new Vector3(h, 0f, v).normalized;
-
-        Vector3 camForward = cameraTransform.forward;
-        Vector3 camRight = cameraTransform.right;
-        camForward.y = 0f;
-        camRight.y = 0f;
-        camForward.Normalize();
-        camRight.Normalize();
-        Vector3 targetDir = camForward * inputDir.z + camRight * inputDir.x;
-
+    
         float controlFactor = isGrounded ? 1f : airControl;
         if (targetDir.magnitude > 0.1f)
         {
@@ -129,15 +127,62 @@ public class MarioLikeMovement : MonoBehaviour
 
 
         IsWalking = new Vector3(move.x, 0f, move.z).magnitude > 0.1f;
-       
-     
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            animtr.SetTrigger("IsJumping");
+
+        }
 
 
-    }
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            moveSpeed = 16f;
+
+            Debug.Log("Key Pressed");
+
+        }
+
+        else
+        {
+            moveSpeed = 10f;
+
+
+        }
+
+
+
+
+        // Colisões
+   
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
 
     public void Bounce()
     {
         velocity.y = jumpForce * 0.8f; // Pode ajustar o multiplicador
     }
+
+
+
+
+
+
 
 }

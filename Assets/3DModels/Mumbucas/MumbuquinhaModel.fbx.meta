@@ -60,8 +60,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Jump
-      takeName: Jump
+      name: metarig|Jump
+      takeName: metarig|Jump
       internalID: 5539831331247536789
       firstFrame: 0
       lastFrame: 9
@@ -82,7 +82,32 @@ ModelImporter:
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
+      curves:
+      - name: Curve
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: -0.025000762
+            value: 0.00046605524
+            inSlope: 0.005687442
+            outSlope: 0.005687442
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.19231078
+          - serializedVersion: 3
+            time: 1.0583191
+            value: 0.020050049
+            inSlope: 0.0367663
+            outSlope: 0.0367663
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.29614437
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
       events: []
       transformMask: []
       maskType: 3
@@ -118,8 +143,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: WalkAnim
-      takeName: WalkAnim
+      name: metarig|WalkAnim (1)
+      takeName: metarig|WalkAnim
       internalID: 7007069243673831616
       firstFrame: 0
       lastFrame: 23
@@ -176,8 +201,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: '''|WalkAnim'
-      takeName: '''|WalkAnim'
+      name: metarig|WalkAnim
+      takeName: metarig|WalkAnim
       internalID: 5557709321464186931
       firstFrame: 0
       lastFrame: 23
