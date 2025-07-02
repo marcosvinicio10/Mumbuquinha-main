@@ -32,6 +32,7 @@ public class MarioLikeMovement : MonoBehaviour
     [Header("Anim")]
     public bool IsWalking {  get; private set; }
     public Animator animtr;
+    
 
 
     [Header("Interações")]
@@ -42,6 +43,10 @@ public class MarioLikeMovement : MonoBehaviour
     {
        
         controller = GetComponent<CharacterController>();
+
+
+        
+
     }
 
 
