@@ -78,14 +78,13 @@ public class MarioLikeMovement : MonoBehaviour
         Vector3 targetDir = camForward * inputDir.z + camRight * inputDir.x;
         bool isGrounded = controller.isGrounded;
 
-        
+        //Esse Código é para o Coyote Time
         if (isGrounded)
         {
             lastGroundedTime = Time.time;
             if (velocity.y < 0)
                 velocity.y = -2f;
         }
-
         // Pulo (jump buffer)
         if (Input.GetButtonDown("Jump")) 
             lastJumpPressedTime = Time.time;
