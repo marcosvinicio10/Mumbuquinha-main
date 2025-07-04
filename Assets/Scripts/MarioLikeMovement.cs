@@ -41,12 +41,7 @@ public class MarioLikeMovement : MonoBehaviour
 
     void Start()
     {
-       
         controller = GetComponent<CharacterController>();
-
-
-        
-
     }
 
 
@@ -58,7 +53,6 @@ public class MarioLikeMovement : MonoBehaviour
             velocity.y = trampolimForce;
         }
     }
-
 
 
 
@@ -132,7 +126,7 @@ public class MarioLikeMovement : MonoBehaviour
 
         IsWalking = new Vector3(move.x, 0f, move.z).magnitude > 0.1f;
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             animtr.SetTrigger("IsJumping");
 
@@ -150,43 +144,7 @@ public class MarioLikeMovement : MonoBehaviour
         else
         {
             moveSpeed = 10f;
-
-
         }
-
-
-
-
-        // Colisões
-   
-
-
-
-
-
-
-
-
-
-
-
-
-}
-
-
-
-
-
-
-    public void Bounce()
-    {
-        velocity.y = jumpForce * 0.8f; // Pode ajustar o multiplicador
     }
-
-
-
-
-
-
-
 }
+
