@@ -9,15 +9,17 @@ public class ControladorDEVida : MonoBehaviour
     public TextMeshProUGUI textoVida;
 
     [Header("Checkpoints")]
-    public List<Transform> checkpoints; // Lista p blica no Inspector
+    public List<Transform> checkpoints;
     private Transform checkpointAtual;
 
     [Header("Checkpoint padrão")]
     public Transform checkpointInicial;
 
+    private CharacterController controller;
 
     void Start()
     {
+        controller = GetComponent<CharacterController>();
         AtualizarVida();
     }
 
@@ -50,34 +52,12 @@ public class ControladorDEVida : MonoBehaviour
     {
         Debug.Log("Player morreu!");
 
-        if (checkpointAtual != null)
-        {
-            Rigidbody rb = GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.linearVelocity = Vector3.zero;
-                rb.angularVelocity = Vector3.zero;
-                rb.isKinematic = true; // desativa f sica temporariamente
-            }
+        Transform destino = checkpointAtual != null ? checkpointAtual : checkpointInicial;
+        TeleportarPara(destino);
 
-            transform.position = checkpointAtual.position;
-
-            if (rb != null)
-                rb.isKinematic = false;
-
-            vida = 5;
-            AtualizarVida();
-
-            Debug.Log("Teleportando para checkpoint: " + checkpointAtual.position);
-
-        }
-        else
-        {
-            Debug.LogWarning("Nenhum checkpoint definido.");
-            transform.position = checkpointInicial.position;
-        }
+        vida = 5;
+        AtualizarVida();
     }
-
 
     void AtualizarVida()
     {
@@ -99,28 +79,24 @@ public class ControladorDEVida : MonoBehaviour
         else
         {
             Debug.Log("Retornando ao checkpoint por água...");
-            if (checkpointAtual != null)
-            {
-                Rigidbody rb = GetComponent<Rigidbody>();
-                if (rb != null)
-                {
-                    rb.linearVelocity = Vector3.zero;
-                    rb.angularVelocity = Vector3.zero;
-                    rb.isKinematic = true;
-                }
-
-                transform.position = checkpointAtual.position;
-
-                if (rb != null)
-                    rb.isKinematic = false;
-            }
-            else
-            {
-                Debug.LogWarning("Sem checkpoint salvo.");
-                transform.position = checkpointInicial.position;
-
-            }
+            Transform destino = checkpointAtual != null ? checkpointAtual : checkpointInicial;
+            TeleportarPara(destino);
         }
     }
 
+    void TeleportarPara(Transform destino)
+    {
+        if (controller != null)
+        {
+            controller.enabled = false;
+            transform.position = destino.position;
+            controller.enabled = true;
+        }
+        else
+        {
+            transform.position = destino.position;
+        }
+
+        Debug.Log("Teleportado para: " + destino.name);
+    }
 }

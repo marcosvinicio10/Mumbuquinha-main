@@ -19,7 +19,7 @@ public class Checkpoint : MonoBehaviour
                 Debug.Log("Checkpoint ativado: " + gameObject.name);
             }
 
-           gameObject.SetActive(true); // O checkpoint desaparece
+          
         }
     }
 }
