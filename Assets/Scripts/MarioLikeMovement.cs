@@ -36,7 +36,7 @@ public class MarioLikeMovement : MonoBehaviour
 
 
     [Header("Interações")]
-    public float trampolimForce = 32f;
+    public float trampolimForce = 100f;
 
 
     void Start()
