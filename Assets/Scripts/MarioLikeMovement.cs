@@ -31,6 +31,8 @@ public class MarioLikeMovement : MonoBehaviour
 
     [Header("Anim")]
     public bool IsWalking {  get; private set; }
+    public bool IsJumping { get; private set; }
+
     public Animator animtr;
     
 
@@ -126,11 +128,7 @@ public class MarioLikeMovement : MonoBehaviour
 
         IsWalking = new Vector3(move.x, 0f, move.z).magnitude > 0.1f;
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            animtr.SetTrigger("IsJumping");
-
-        }
+      
 
 
         if (Input.GetKey(KeyCode.LeftShift))

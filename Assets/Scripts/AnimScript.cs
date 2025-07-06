@@ -12,8 +12,17 @@ public class AnimScript : MonoBehaviour
 
     void Update()
     {
+
         if (movementScript == null) return;
 
         animator.SetBool("IsWalking", movementScript.IsWalking);
+
+        if (movementScript.IsJumping)
+        {
+            animator.SetTrigger("IsJumping");
+        }
     }
+    
+
+
 }

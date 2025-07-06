@@ -89,11 +89,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Jump
-      takeName: Jump
+      name: MetarigTaina|JumpTayna
+      takeName: MetarigTaina|JumpTayna
       internalID: 5539831331247536789
       firstFrame: 0
-      lastFrame: 3
+      lastFrame: 9
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

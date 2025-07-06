@@ -20125,7 +20125,6 @@ GameObject:
   - component: {fileID: 621332672}
   - component: {fileID: 621332673}
   - component: {fileID: 621332674}
-  - component: {fileID: 621332675}
   - component: {fileID: 621332676}
   m_Layer: 6
   m_Name: "\U0001F603 Player"
@@ -20267,18 +20266,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &621332675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 621332660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09e27a2cddd44574bb5e41097e9ea705, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &621332676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41760,18 +41747,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementScript: {fileID: 621332672}
---- !u!114 &1191672504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1191672500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09e27a2cddd44574bb5e41097e9ea705, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!198 &1192634358 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 3523383681348827817, guid: 2900c507263c8194099735ab7e289c4e, type: 3}
@@ -46798,9 +46773,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 55bd516ce9ef5e04b8b0d1ecf7207871, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1191672503}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 55bd516ce9ef5e04b8b0d1ecf7207871, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1191672504}
   m_SourcePrefab: {fileID: 100100000, guid: 55bd516ce9ef5e04b8b0d1ecf7207871, type: 3}
 --- !u!43 &1250690124
 Mesh:
@@ -73762,9 +73734,9 @@ SceneRoots:
   - {fileID: 973357803}
   - {fileID: 905563805}
   - {fileID: 926581}
+  - {fileID: 437775185}
   - {fileID: 968495545}
   - {fileID: 1766798872}
-  - {fileID: 437775185}
   - {fileID: 762818439}
   - {fileID: 764886759}
   - {fileID: 1125350362}
