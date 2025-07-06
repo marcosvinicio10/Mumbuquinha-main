@@ -44,6 +44,8 @@ public class MarioLikeMovement : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+
+
     }
 
 
