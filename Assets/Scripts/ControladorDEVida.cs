@@ -9,8 +9,12 @@ public class ControladorDEVida : MonoBehaviour
     public TextMeshProUGUI textoVida;
 
     [Header("Checkpoints")]
-    public List<Transform> checkpoints; // Lista p�blica no Inspector
+    public List<Transform> checkpoints; // Lista p blica no Inspector
     private Transform checkpointAtual;
+
+    [Header("Checkpoint padrão")]
+    public Transform checkpointInicial;
+
 
     void Start()
     {
@@ -53,7 +57,7 @@ public class ControladorDEVida : MonoBehaviour
             {
                 rb.linearVelocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
-                rb.isKinematic = true; // desativa f�sica temporariamente
+                rb.isKinematic = true; // desativa f sica temporariamente
             }
 
             transform.position = checkpointAtual.position;
@@ -65,10 +69,12 @@ public class ControladorDEVida : MonoBehaviour
             AtualizarVida();
 
             Debug.Log("Teleportando para checkpoint: " + checkpointAtual.position);
+
         }
         else
         {
             Debug.LogWarning("Nenhum checkpoint definido.");
+            transform.position = checkpointInicial.position;
         }
     }
 
@@ -80,4 +86,41 @@ public class ControladorDEVida : MonoBehaviour
             textoVida.text = "Vida: " + vida;
         }
     }
+
+    public void TocarNaAgua()
+    {
+        vida -= 1;
+        AtualizarVida();
+
+        if (vida <= 0)
+        {
+            Morrer();
+        }
+        else
+        {
+            Debug.Log("Retornando ao checkpoint por água...");
+            if (checkpointAtual != null)
+            {
+                Rigidbody rb = GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    rb.linearVelocity = Vector3.zero;
+                    rb.angularVelocity = Vector3.zero;
+                    rb.isKinematic = true;
+                }
+
+                transform.position = checkpointAtual.position;
+
+                if (rb != null)
+                    rb.isKinematic = false;
+            }
+            else
+            {
+                Debug.LogWarning("Sem checkpoint salvo.");
+                transform.position = checkpointInicial.position;
+
+            }
+        }
+    }
+
 }
