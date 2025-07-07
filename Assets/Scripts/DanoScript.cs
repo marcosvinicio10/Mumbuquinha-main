@@ -3,10 +3,15 @@ using UnityEngine;
 public class DanoScript : MonoBehaviour
 {
     private ControladorDEVida vidaDoPlayer;
+    private AudioSource audioSource;
+
+    [Header("Som de Dano")]
+    public AudioClip somDano;
 
     private void Start()
     {
         vidaDoPlayer = FindAnyObjectByType<ControladorDEVida>();
+        audioSource = GetComponent<AudioSource>(); // pega o AudioSource no mesmo objeto
     }
 
     private void OnTriggerEnter(Collider other)
@@ -17,10 +22,15 @@ public class DanoScript : MonoBehaviour
 
             if (vidaDoPlayer != null)
             {
-                vidaDoPlayer.TomarDano(1); // Ajuste o valor do dano aqui
+                vidaDoPlayer.TomarDano(1); // Aplica o dano
             }
 
-            // Se quiser, desative o objeto que causou dano
+            if (audioSource != null && somDano != null)
+            {
+                audioSource.PlayOneShot(somDano); // Toca o som
+            }
+
+            // Se quiser, desativa o objeto depois do dano
             // gameObject.SetActive(false);
         }
     }
