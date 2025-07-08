@@ -20,6 +20,7 @@ public class ControladorDEVida : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        
         AtualizarVida();
     }
 

@@ -8,7 +8,7 @@ public class MarioLikeMovement : MonoBehaviour
     public Transform cameraTransform;
 
     [Header("Movimentação")]
-    public float moveSpeed = 10f;
+    public float moveSpeed = 16f;
     public float rotationSpeed = 10f;
     public float acceleration = 20f;
     public float deceleration = 10f;
@@ -135,7 +135,7 @@ public class MarioLikeMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            moveSpeed = 16f;
+            moveSpeed = 55f;
 
             Debug.Log("Key Pressed");
 
@@ -143,7 +143,7 @@ public class MarioLikeMovement : MonoBehaviour
 
         else
         {
-            moveSpeed = 10f;
+            moveSpeed = 16f;
         }
     }
 }
