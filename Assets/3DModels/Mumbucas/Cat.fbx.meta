@@ -147,11 +147,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: metarig|WalkAnim.001
-      takeName: metarig|WalkAnim.001
+      name: metarig|JumpCat
+      takeName: metarig|JumpCat
       internalID: -5512962873854938547
       firstFrame: 0
-      lastFrame: 0
+      lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -176,19 +176,19 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: metarig|WalkAnim.003
-      takeName: metarig|WalkAnim.003
+      name: metarig|WalkCat
+      takeName: metarig|WalkCat
       internalID: 6020512564500829029
       firstFrame: 0
-      lastFrame: 0
+      lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0

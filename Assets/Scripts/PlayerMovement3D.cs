@@ -15,7 +15,7 @@ public class PlayerMovement3D : MonoBehaviour
     [Header("Pulo")]
     public float forcaPuloMinima = 10f;
     public float forcaPuloMaxima = 16f;
-    public float tempoMaximoCarregamento = 1f;
+    public float tempoMaximoCarregamento = 0.5f;
     public float gravidade = -20f;
     public float trampolimForce = 30f;
 
@@ -31,12 +31,29 @@ public class PlayerMovement3D : MonoBehaviour
     private bool podeDash = true;
     private bool estaNoChao => controller.isGrounded;
 
+
+    private Animator animator;
+
+    [Header("Pulo Avançado")]
+    public float tempoCoyote = 0.2f; // tempo de coyote em segundos
+
+    private float tempoDesdeUltimoChao = 0f;
+
+
+
+
+
     void Start()
     {
         GameObject obj = GameObject.Find("Main Camera");
         if (obj != null)
             referenciaCamera = obj.transform;
         controller = GetComponent<CharacterController>();
+
+        // Achar automaticamente o Animator no personagem 3D filho
+        animator = GetComponentInChildren<Animator>();
+
+
     }
 
     void Update()
@@ -44,22 +61,43 @@ public class PlayerMovement3D : MonoBehaviour
         ReceberEntradaMovimento();
         AplicarGravidade();
 
-        // Entrada de pulo
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (estaNoChao)
+            tempoDesdeUltimoChao = 0f;
+        else
+            tempoDesdeUltimoChao += Time.deltaTime;
+
+
+
+
+        if (Input.GetKeyDown(KeyCode.Space) && tempoDesdeUltimoChao <= tempoCoyote)
         {
+            velocidadeVertical = forcaPuloMinima;
             tempoCarregandoPulo = 0f;
             carregandoPulo = true;
+
+            // Dispara a animação de pulo
+            if (animator != null)
+                animator.SetTrigger("IsJumping");
         }
 
+        // Segura espaço = aumenta altura do pulo
         if (Input.GetKey(KeyCode.Space) && carregandoPulo)
         {
             tempoCarregandoPulo += Time.deltaTime;
-            tempoCarregandoPulo = Mathf.Clamp(tempoCarregandoPulo, 0f, tempoMaximoCarregamento);
+            if (tempoCarregandoPulo < tempoMaximoCarregamento)
+            {
+                float incremento = (forcaPuloMaxima - forcaPuloMinima) * (Time.deltaTime / tempoMaximoCarregamento);
+                velocidadeVertical += incremento;
+            }
+            else
+            {
+                carregandoPulo = false;
+            }
         }
 
+        // Solta espaço = para de aumentar altura
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            RealizarPulo();
             carregandoPulo = false;
         }
 
@@ -69,7 +107,20 @@ public class PlayerMovement3D : MonoBehaviour
 
         // Movimento
         controller.Move((direcaoVelocidade + Vector3.up * velocidadeVertical) * Time.deltaTime);
+
+        AtualizarAnimacoes();
+
     }
+
+    void AtualizarAnimacoes()
+    {
+        if (animator == null) return;
+
+        bool andando = direcaoVelocidade.magnitude > 0.1f;
+        animator.SetBool("IsWalking", andando);
+    }
+
+
 
     // ————— FUNÇÕES DE MOVIMENTO —————
 
@@ -96,31 +147,7 @@ public class PlayerMovement3D : MonoBehaviour
         }
     }
 
-    // ————— PULO —————
-
- 
-
-    
-
-    IEnumerator CarregarPulo()
-    {
-        while (carregandoPulo && tempoCarregandoPulo < tempoMaximoCarregamento)
-        {
-            tempoCarregandoPulo += Time.deltaTime;
-            yield return null;
-        }
-    }
-
-    void RealizarPulo()
-    {
-        if (estaNoChao)
-        {
-            carregandoPulo = false;
-            float t = Mathf.Clamp01(tempoCarregandoPulo / tempoMaximoCarregamento);
-            float forca = Mathf.Lerp(forcaPuloMinima, forcaPuloMaxima, t);
-            velocidadeVertical = forca;
-        }
-    }
+    // ————— GRAVIDADE —————
 
     void AplicarGravidade()
     {
@@ -157,6 +184,8 @@ public class PlayerMovement3D : MonoBehaviour
         podeDash = true;
     }
 
+    // ————— TRAMPOLIM —————
+
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.gameObject.CompareTag("Trampolim"))
@@ -165,8 +194,4 @@ public class PlayerMovement3D : MonoBehaviour
             velocidadeVertical = trampolimForce;
         }
     }
-
-
-
-
 }
