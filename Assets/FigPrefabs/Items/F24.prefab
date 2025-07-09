@@ -136,6 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ab12c301b0de54d88a9e3973b53c85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 24
+  id: 23
   stickerImage: {fileID: 1131210873, guid: 033e14a7f4496194491d10139d24f472, type: 3}
   mensagemFigurinha: "Voc\xEA encontrou uma nova figurinha!"
