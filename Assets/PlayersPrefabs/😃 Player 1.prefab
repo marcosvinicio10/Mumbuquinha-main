@@ -164,8 +164,10 @@ MonoBehaviour:
   forcaPuloMaxima: 16
   tempoMaximoCarregamento: 0.5
   gravidade: -20
+  trampolimForce: 30
   forcaDash: 15
   tempoCooldownDash: 2
+  tempoCoyote: 0.2
 --- !u!82 &8831168439642795396
 AudioSource:
   m_ObjectHideFlags: 0
