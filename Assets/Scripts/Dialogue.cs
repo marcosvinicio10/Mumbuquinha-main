@@ -5,18 +5,18 @@ using TMPro;
 
 public class Dialogue : MonoBehaviour
 {
-    // ————— REFERÊNCIAS E CONFIGURAÇÕES —————
     [Header("Referências de UI")]
     public TMP_Text nomeTexto;
     public TMP_Text falaTexto;
     public GameObject caixaDeMensagem;
+    public TextMeshProUGUI textoInteracao; // NOVO: texto "Pressione E"
 
     [Header("Dados do NPC")]
     public string nomeDoNPC = "NPC";
     [TextArea(2, 5)]
     public List<string> falas;
     [TextArea(2, 5)]
-    public string falaFinal = "Ah, foi muito bom ter conversado com você!";
+    public string falaFinal = "Foi bom conversar com você!";
 
     [Header("Configurações de Digitação")]
     public float velocidadeDigitacao = 0.05f;
@@ -36,6 +36,9 @@ public class Dialogue : MonoBehaviour
         nomeTexto.text = nomeDoNPC;
         falaTexto.text = "";
         caixaDeMensagem.SetActive(false);
+
+        if (textoInteracao != null)
+            textoInteracao.gameObject.SetActive(false);
     }
 
     void Update()
@@ -44,6 +47,9 @@ public class Dialogue : MonoBehaviour
         {
             if (!dialogoAtivo)
             {
+                if (textoInteracao != null)
+                    textoInteracao.gameObject.SetActive(false); // Oculta aviso
+
                 IniciarDialogo();
             }
             else if (!digitando)
@@ -52,8 +58,6 @@ public class Dialogue : MonoBehaviour
             }
         }
     }
-
-    // ————— FUNÇÕES DE DIÁLOGO —————
 
     public void IniciarDialogo()
     {
@@ -77,7 +81,6 @@ public class Dialogue : MonoBehaviour
     {
         if (dialogoConcluido)
         {
-            // Repete só a fala final
             if (coroutineAtual != null) StopCoroutine(coroutineAtual);
             coroutineAtual = StartCoroutine(DigitarFala(falaFinal));
             return;
@@ -91,7 +94,7 @@ public class Dialogue : MonoBehaviour
         }
         else
         {
-            dialogoAtivo = false; // Encerra o diálogo principal
+            dialogoAtivo = false;
             caixaDeMensagem.SetActive(false);
         }
     }
@@ -112,8 +115,6 @@ public class Dialogue : MonoBehaviour
         digitando = false;
     }
 
-    // ————— DIÁLOGO APÓS CONCLUIR MISSÃO —————
-
     public void ConcluirDialogo()
     {
         dialogoConcluido = true;
@@ -124,6 +125,9 @@ public class Dialogue : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             jogadorPerto = true;
+
+            if (textoInteracao != null)
+                textoInteracao.gameObject.SetActive(true); // MOSTRA aviso
         }
     }
 
@@ -132,8 +136,11 @@ public class Dialogue : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             jogadorPerto = false;
-            caixaDeMensagem.SetActive(false);
             dialogoAtivo = false;
+            caixaDeMensagem.SetActive(false);
+
+            if (textoInteracao != null)
+                textoInteracao.gameObject.SetActive(false); // ESCONDE aviso
         }
     }
 }
