@@ -8,6 +8,7 @@ public class VirarTartaruga : MonoBehaviour
     public GameObject objetoParaAtivar; // Novo objeto que será ativado ao pressionar L
 
     private bool podeVirar = false;
+    private bool jaVirou = false; // Novo controle para impedir múltiplas ativações
 
     void Start()
     {
@@ -24,7 +25,7 @@ public class VirarTartaruga : MonoBehaviour
 
     void Update()
     {
-        if (podeVirar && Input.GetKeyDown(KeyCode.L))
+        if (podeVirar && !jaVirou && Input.GetKeyDown(KeyCode.L))
         {
             if (tartaruga != null)
             {
@@ -41,13 +42,14 @@ public class VirarTartaruga : MonoBehaviour
                 textoUI.gameObject.SetActive(false); // Esconde o texto
             }
 
-            podeVirar = false; // Só permite uma vez
+            jaVirou = true;    // Marca que já virou
+            podeVirar = false; // Impede novas ativações
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && textoUI != null)
+        if (other.CompareTag("Player") && textoUI != null && !jaVirou)
         {
             textoUI.gameObject.SetActive(true);
             podeVirar = true;
