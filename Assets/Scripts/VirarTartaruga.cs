@@ -5,6 +5,8 @@ public class VirarTartaruga : MonoBehaviour
 {
     public GameObject tartaruga; // Objeto que vai virar
     public TextMeshProUGUI textoUI; // Texto que aparece ao encostar
+    public GameObject objetoParaAtivar; // Novo objeto que será ativado ao pressionar L
+
     private bool podeVirar = false;
 
     void Start()
@@ -12,6 +14,11 @@ public class VirarTartaruga : MonoBehaviour
         if (textoUI != null)
         {
             textoUI.gameObject.SetActive(false); // Esconde o texto no início
+        }
+
+        if (objetoParaAtivar != null)
+        {
+            objetoParaAtivar.SetActive(false); // Garante que começa desativado
         }
     }
 
@@ -22,9 +29,19 @@ public class VirarTartaruga : MonoBehaviour
             if (tartaruga != null)
             {
                 tartaruga.transform.Rotate(180f, 0f, 0f); // Vira a tartaruga no eixo X
-                textoUI.gameObject.SetActive(false); // Esconde o texto
-                podeVirar = false; // Só vira uma vez
             }
+
+            if (objetoParaAtivar != null)
+            {
+                objetoParaAtivar.SetActive(true); // Ativa o novo objeto
+            }
+
+            if (textoUI != null)
+            {
+                textoUI.gameObject.SetActive(false); // Esconde o texto
+            }
+
+            podeVirar = false; // Só permite uma vez
         }
     }
 
