@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8491399336598801359
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 9
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -8,12 +21,12 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: "\xC1gua"
-  m_Shader: {fileID: -6465566751694194690, guid: b3b14c0ccba853543b3bdf73865fe0f2, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: d258145543147d540b80ffa27217f519, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -40,26 +53,16 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RippleDensity: 75
-    - _RippleSlimenes: 7.5
-    - _RippleSpeed: 2.5
-    - _WaveSpeed: 0.1
+    - _Specular_Density: 2000
+    - _Specular_Speed: 2.5
+    - _Specular_Thickness: 2.5
+    - _Water_Depth: 0.1
+    - _Wave_Amplitude: 0.5
+    - _Wave_Frequency: 0.9
+    - _Wave_Speed: 5
     m_Colors:
-    - _BaseColor: {r: 0.36320746, g: 0.794796, b: 1, a: 1}
-    - _NoiseTiling: {r: 500, g: 500, b: 0, a: 0}
-    - _RippleColor: {r: 0.2295631, g: 2.186316, b: 2.317495, a: 0}
+    - _Depth_Color: {r: 0.36832502, g: 0.6887047, b: 0.8773585, a: 0}
+    - _Shadow_Color: {r: 0.20594516, g: 0.36063048, b: 0.49056602, a: 0}
+    - _Specular_Color: {r: 0.5492168, g: 0.9622642, b: 0.9218363, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &4243645016980768401
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 9
