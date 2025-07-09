@@ -140,15 +140,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 132a2ed6e569db849add1c22d3d9fd19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidade: 10
+  velocidade: 13
   suavidadeRotacao: 10
   forcaPuloMinima: 10
-  forcaPuloMaxima: 16
+  forcaPuloMaxima: 18
   tempoMaximoCarregamento: 0.5
   gravidade: -20
   trampolimForce: 30
-  forcaDash: 15
-  tempoCooldownDash: 2
+  forcaDash: 25
+  tempoCooldownDash: 1
   tempoCoyote: 0.2
 --- !u!82 &5924267679333555865
 AudioSource:

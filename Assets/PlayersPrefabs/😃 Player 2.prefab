@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5034674746492556195}
   - component: {fileID: 38693825771286765}
   - component: {fileID: 6966143034205603895}
-  - component: {fileID: 5694348296243847198}
   - component: {fileID: 552955753645212184}
+  - component: {fileID: 5041344848032768443}
   m_Layer: 6
   m_Name: "\U0001F603 Player 2"
   m_TagString: Player
@@ -128,28 +128,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5694348296243847198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1903433756027425626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 132a2ed6e569db849add1c22d3d9fd19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocidade: 10
-  suavidadeRotacao: 10
-  forcaPuloMinima: 14
-  forcaPuloMaxima: 20
-  tempoMaximoCarregamento: 0.5
-  gravidade: -20
-  trampolimForce: 30
-  forcaDash: 15
-  tempoCooldownDash: 2
-  tempoCoyote: 0.2
 --- !u!82 &552955753645212184
 AudioSource:
   m_ObjectHideFlags: 0
@@ -247,6 +225,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5041344848032768443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903433756027425626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 132a2ed6e569db849add1c22d3d9fd19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidade: 14
+  suavidadeRotacao: 10
+  forcaPuloMinima: 11
+  forcaPuloMaxima: 19
+  tempoMaximoCarregamento: 0.5
+  gravidade: -20
+  trampolimForce: 30
+  forcaDash: 26
+  tempoCooldownDash: 1
+  tempoCoyote: 0.2
 --- !u!1001 &4414032249899728578
 PrefabInstance:
   m_ObjectHideFlags: 0
