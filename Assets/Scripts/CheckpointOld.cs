@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Checkpoint : MonoBehaviour
+public class CheckpointOld : MonoBehaviour
 {
     private ControladorDEVida player;
 

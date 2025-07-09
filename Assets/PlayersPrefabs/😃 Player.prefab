@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3641989619247583182}
   - component: {fileID: 3023843929315849991}
   - component: {fileID: 4507264081314095117}
-  - component: {fileID: 3756875017010163680}
   - component: {fileID: 3412962116151734559}
   - component: {fileID: 5924267679333555865}
   m_Layer: 6
@@ -129,23 +128,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3756875017010163680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8070384788175413340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1541a3d24206bba418f76786c1372197, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vida: 5
-  textoVida: {fileID: 0}
-  checkpoints:
-  - {fileID: 0}
-  checkpointInicial: {fileID: 0}
 --- !u!114 &3412962116151734559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,8 +146,10 @@ MonoBehaviour:
   forcaPuloMaxima: 16
   tempoMaximoCarregamento: 0.5
   gravidade: -20
+  trampolimForce: 30
   forcaDash: 15
   tempoCooldownDash: 2
+  tempoCoyote: 0.2
 --- !u!82 &5924267679333555865
 AudioSource:
   m_ObjectHideFlags: 0
@@ -321,7 +305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 55bd516ce9ef5e04b8b0d1ecf7207871, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
