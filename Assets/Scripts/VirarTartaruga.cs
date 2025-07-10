@@ -5,21 +5,27 @@ public class VirarTartaruga : MonoBehaviour
 {
     public GameObject tartaruga; // Objeto que vai virar
     public TextMeshProUGUI textoUI; // Texto que aparece ao encostar
-    public GameObject objetoParaAtivar; // Novo objeto que será ativado ao pressionar L
+    public GameObject objetoParaAtivar; // Objeto que será ativado ao pressionar L
+    public GameObject outroObjetoParaAtivar; // Novo objeto adicional que será ativado
 
     private bool podeVirar = false;
-    private bool jaVirou = false; // Novo controle para impedir múltiplas ativações
+    private bool jaVirou = false; // Impede múltiplas ativações
 
     void Start()
     {
         if (textoUI != null)
         {
-            textoUI.gameObject.SetActive(false); // Esconde o texto no início
+            textoUI.gameObject.SetActive(false);
         }
 
         if (objetoParaAtivar != null)
         {
-            objetoParaAtivar.SetActive(false); // Garante que começa desativado
+            objetoParaAtivar.SetActive(false);
+        }
+
+        if (outroObjetoParaAtivar != null)
+        {
+            outroObjetoParaAtivar.SetActive(false); // Garante que começa desativado
         }
     }
 
@@ -29,21 +35,26 @@ public class VirarTartaruga : MonoBehaviour
         {
             if (tartaruga != null)
             {
-                tartaruga.transform.Rotate(180f, 0f, 0f); // Vira a tartaruga no eixo X
+                tartaruga.transform.Rotate(180f, 0f, 0f);
             }
 
             if (objetoParaAtivar != null)
             {
-                objetoParaAtivar.SetActive(true); // Ativa o novo objeto
+                objetoParaAtivar.SetActive(true);
+            }
+
+            if (outroObjetoParaAtivar != null)
+            {
+                outroObjetoParaAtivar.SetActive(true); // Ativa o novo objeto adicional
             }
 
             if (textoUI != null)
             {
-                textoUI.gameObject.SetActive(false); // Esconde o texto
+                textoUI.gameObject.SetActive(false);
             }
 
-            jaVirou = true;    // Marca que já virou
-            podeVirar = false; // Impede novas ativações
+            jaVirou = true;
+            podeVirar = false;
         }
     }
 
