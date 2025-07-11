@@ -13,6 +13,7 @@ public class FastTravelBus : MonoBehaviour
         if (isCentralBus)
         {
             centralBusTransform = this.transform;
+            Debug.Log("Central Bus definido: " + name);
         }
     }
 
@@ -26,13 +27,38 @@ public class FastTravelBus : MonoBehaviour
 
     public void TryFastTravel()
     {
-        if (isCentralBus || centralBusTransform == null)
+        if (isCentralBus)
+        {
+            Debug.Log("Esse é o ônibus central, não pode viajar.");
             return;
+        }
+
+        if (centralBusTransform == null)
+        {
+            Debug.LogWarning("Ônibus central não encontrado!");
+            return;
+        }
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            player.transform.position = centralBusTransform.position;
+            // Pega o CharacterController do player
+            CharacterController controller = player.GetComponent<CharacterController>();
+            if (controller != null)
+                controller.enabled = false;
+
+            // Define destino com um pequeno offset pra evitar bugs de colisão no chão
+            Vector3 destino = centralBusTransform.position + Vector3.up * 1f;
+            player.transform.position = destino;
+
+            if (controller != null)
+                controller.enabled = true;
+
+            Debug.Log("Player teleportado para: " + destino);
+        }
+        else
+        {
+            Debug.LogWarning("Player não encontrado na cena!");
         }
     }
 
@@ -49,6 +75,7 @@ public class FastTravelBus : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("Player entrou no ônibus!");
             isPlayerNear = true;
         }
     }
