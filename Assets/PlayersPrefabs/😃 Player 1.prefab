@@ -239,13 +239,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidade: 13
   suavidadeRotacao: 10
-  forcaPuloMinima: 10
+  forcaPuloMinima: 16
   forcaPuloMaxima: 18
   tempoMaximoCarregamento: 0.5
-  gravidade: -20
+  gravidade: -35
   trampolimForce: 30
-  forcaDash: 25
-  tempoCooldownDash: 1
+  forcaDash: 30
+  tempoCooldownDash: 0.2
   tempoCoyote: 0.2
 --- !u!1001 &3059600247513615302
 PrefabInstance:

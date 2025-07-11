@@ -149,7 +149,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 1.5021973
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -239,13 +239,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidade: 14
   suavidadeRotacao: 10
-  forcaPuloMinima: 11
+  forcaPuloMinima: 16
   forcaPuloMaxima: 19
   tempoMaximoCarregamento: 0.5
-  gravidade: -20
+  gravidade: -35
   trampolimForce: 30
-  forcaDash: 26
-  tempoCooldownDash: 1
+  forcaDash: 30
+  tempoCooldownDash: 0.2
   tempoCoyote: 0.2
 --- !u!1001 &4414032249899728578
 PrefabInstance:
