@@ -205,11 +205,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: metarig|WalkAnim.005
-      takeName: metarig|WalkAnim.005
+      name: metarig|Dash
+      takeName: metarig|Dash
       internalID: 887806875422063457
       firstFrame: 0
-      lastFrame: 0
+      lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

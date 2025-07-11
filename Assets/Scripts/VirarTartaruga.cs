@@ -3,55 +3,48 @@ using TMPro;
 
 public class VirarTartaruga : MonoBehaviour
 {
-    public GameObject tartaruga; // Objeto que vai virar
-    public TextMeshProUGUI textoUI; // Texto que aparece ao encostar
-    public GameObject objetoParaAtivar; // Objeto que será ativado ao pressionar L
-    public GameObject outroObjetoParaAtivar; // Novo objeto adicional que será ativado
+    public GameObject tartaruga;
+    public GameObject EButton; // Este botão deve estar como filho deste objeto
+    public TextMeshProUGUI textoUI;
+    public GameObject objetoParaAtivar;
+    public GameObject outroObjetoParaAtivar;
 
     private bool podeVirar = false;
-    private bool jaVirou = false; // Impede múltiplas ativações
+    private bool jaVirou = false;
 
     void Start()
     {
+        if (EButton != null)
+            EButton.SetActive(false); // Desativa só o botão desta instância
+
         if (textoUI != null)
-        {
             textoUI.gameObject.SetActive(false);
-        }
 
         if (objetoParaAtivar != null)
-        {
             objetoParaAtivar.SetActive(false);
-        }
 
         if (outroObjetoParaAtivar != null)
-        {
-            outroObjetoParaAtivar.SetActive(false); // Garante que começa desativado
-        }
+            outroObjetoParaAtivar.SetActive(false);
     }
 
     void Update()
     {
-        if (podeVirar && !jaVirou && Input.GetKeyDown(KeyCode.L))
+        if (podeVirar && !jaVirou && Input.GetKeyDown(KeyCode.E))
         {
             if (tartaruga != null)
-            {
                 tartaruga.transform.Rotate(180f, 0f, 0f);
-            }
 
             if (objetoParaAtivar != null)
-            {
                 objetoParaAtivar.SetActive(true);
-            }
 
             if (outroObjetoParaAtivar != null)
-            {
-                outroObjetoParaAtivar.SetActive(true); // Ativa o novo objeto adicional
-            }
+                outroObjetoParaAtivar.SetActive(true);
+
+            if (EButton != null)
+                EButton.SetActive(false);
 
             if (textoUI != null)
-            {
                 textoUI.gameObject.SetActive(false);
-            }
 
             jaVirou = true;
             podeVirar = false;
@@ -60,18 +53,28 @@ public class VirarTartaruga : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && textoUI != null && !jaVirou)
+        if (other.CompareTag("Player") && !jaVirou)
         {
-            textoUI.gameObject.SetActive(true);
+            if (EButton != null)
+                EButton.SetActive(true);
+
+            if (textoUI != null)
+                textoUI.gameObject.SetActive(true);
+
             podeVirar = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") && textoUI != null)
+        if (other.CompareTag("Player"))
         {
-            textoUI.gameObject.SetActive(false);
+            if (EButton != null)
+                EButton.SetActive(false);
+
+            if (textoUI != null)
+                textoUI.gameObject.SetActive(false);
+
             podeVirar = false;
         }
     }

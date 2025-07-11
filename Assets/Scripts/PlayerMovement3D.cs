@@ -165,6 +165,8 @@ public class PlayerMovement3D : MonoBehaviour
 
         Vector3 direcaoDash = direcaoVelocidade.normalized;
         StartCoroutine(FazerDash(direcaoDash));
+        animator.SetTrigger("IsDashing");
+
     }
 
     IEnumerator FazerDash(Vector3 direcao)
@@ -192,6 +194,8 @@ public class PlayerMovement3D : MonoBehaviour
         {
             Debug.Log("Trampolim ativado!");
             velocidadeVertical = trampolimForce;
+            animator.SetTrigger("IsJumping");
+
         }
     }
 }

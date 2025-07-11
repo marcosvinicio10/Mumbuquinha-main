@@ -6,7 +6,9 @@ public class FastTravelBus : MonoBehaviour
     public bool isCentralBus = false;
 
     private static Transform centralBusTransform;
-    private bool isPlayerNear;
+    private bool isPlayerNear = false;
+    private GameObject playerInTrigger = null;
+    private bool podeViajar = true; // controla se o jogador pode viajar agora
 
     void Start()
     {
@@ -27,6 +29,9 @@ public class FastTravelBus : MonoBehaviour
 
     public void TryFastTravel()
     {
+        if (!podeViajar)
+            return;
+
         if (isCentralBus)
         {
             Debug.Log("Esse é o ônibus central, não pode viajar.");
@@ -39,26 +44,28 @@ public class FastTravelBus : MonoBehaviour
             return;
         }
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
+        if (playerInTrigger != null)
         {
-            // Pega o CharacterController do player
-            CharacterController controller = player.GetComponent<CharacterController>();
+            CharacterController controller = playerInTrigger.GetComponent<CharacterController>();
             if (controller != null)
                 controller.enabled = false;
 
-            // Define destino com um pequeno offset pra evitar bugs de colisão no chão
             Vector3 destino = centralBusTransform.position + Vector3.up * 1f;
-            player.transform.position = destino;
+            playerInTrigger.transform.position = destino;
 
             if (controller != null)
                 controller.enabled = true;
+
+            // Reseta os estados para evitar teleportes consecutivos
+            isPlayerNear = false;
+            playerInTrigger = null;
+            podeViajar = false;
 
             Debug.Log("Player teleportado para: " + destino);
         }
         else
         {
-            Debug.LogWarning("Player não encontrado na cena!");
+            Debug.LogWarning("Player não encontrado na trigger!");
         }
     }
 
@@ -75,16 +82,21 @@ public class FastTravelBus : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player entrou no ônibus!");
+            Debug.Log("Player entrou no ônibus: " + name);
             isPlayerNear = true;
+            playerInTrigger = other.gameObject;
+            podeViajar = true; // libera viagem quando entra no trigger
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && other.gameObject == playerInTrigger)
         {
+            Debug.Log("Player saiu do ônibus: " + name);
             isPlayerNear = false;
+            playerInTrigger = null;
+            podeViajar = true; // libera viagem para próxima entrada
         }
     }
 }
