@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3023843929315849991}
   - component: {fileID: 4507264081314095117}
   - component: {fileID: 3412962116151734559}
+  - component: {fileID: -1605764323380397289}
   - component: {fileID: 5924267679333555865}
   m_Layer: 6
   m_Name: "\U0001F603 Player"
@@ -135,7 +136,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8070384788175413340}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 132a2ed6e569db849add1c22d3d9fd19, type: 3}
   m_Name: 
@@ -150,6 +151,24 @@ MonoBehaviour:
   forcaDash: 30
   tempoCooldownDash: 0.2
   tempoCoyote: 0.2
+--- !u!114 &-1605764323380397289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8070384788175413340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39279c4c444821f4bb9c715940cfce7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidade: 10
+  suavidadeRotacao: 0.1
+  forcaPulo: 16
+  gravidade: -20
+  forcaDash: 30
+  tempoCooldownDash: 0.2
 --- !u!82 &5924267679333555865
 AudioSource:
   m_ObjectHideFlags: 0

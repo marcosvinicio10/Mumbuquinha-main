@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 3873766982742470056}
   - component: {fileID: 7890331048248826749}
   - component: {fileID: 7192700651014561796}
-  - component: {fileID: 8831168439642795396}
   - component: {fileID: 7837579014337856962}
+  - component: {fileID: 656513202498537906}
+  - component: {fileID: 8831168439642795396}
   m_Layer: 6
   m_Name: "\U0001F603 Player 1"
   m_TagString: Player
@@ -128,6 +129,46 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7837579014337856962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429187468673850112}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 132a2ed6e569db849add1c22d3d9fd19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidade: 13
+  suavidadeRotacao: 10
+  forcaPuloMinima: 16
+  forcaPuloMaxima: 18
+  tempoMaximoCarregamento: 0.5
+  gravidade: -35
+  trampolimForce: 30
+  forcaDash: 30
+  tempoCooldownDash: 0.2
+  tempoCoyote: 0.2
+--- !u!114 &656513202498537906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429187468673850112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39279c4c444821f4bb9c715940cfce7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidade: 10
+  suavidadeRotacao: 0.1
+  forcaPulo: 16
+  gravidade: -20
+  forcaDash: 30
+  tempoCooldownDash: 0.2
 --- !u!82 &8831168439642795396
 AudioSource:
   m_ObjectHideFlags: 0
@@ -225,28 +266,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7837579014337856962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 429187468673850112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 132a2ed6e569db849add1c22d3d9fd19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocidade: 13
-  suavidadeRotacao: 10
-  forcaPuloMinima: 16
-  forcaPuloMaxima: 18
-  tempoMaximoCarregamento: 0.5
-  gravidade: -35
-  trampolimForce: 30
-  forcaDash: 30
-  tempoCooldownDash: 0.2
-  tempoCoyote: 0.2
 --- !u!1001 &3059600247513615302
 PrefabInstance:
   m_ObjectHideFlags: 0
